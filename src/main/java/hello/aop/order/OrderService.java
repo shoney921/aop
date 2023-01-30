@@ -25,7 +25,18 @@ public class OrderService {
         log.info("[orderService] 실행");
         orderRepository.save(itemId);
         log.info("[orderService] 종료");
-        return new ResultDTO("성공",200);
+        return new ResultDTO("성공", 200);
     }
 
+    public int editItem(String itemId) {
+        log.info("[Service] 실행");
+        try {
+            orderRepository.edit(itemId);
+        } catch (RuntimeException ex) {
+            throw new RuntimeException("서비스에서 에러");
+//            System.out.println("그냥넘어가기");
+        }
+        log.info("[Service] 종료");
+        return 1;
+    }
 }
